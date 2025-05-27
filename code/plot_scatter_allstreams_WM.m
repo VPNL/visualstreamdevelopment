@@ -1,15 +1,18 @@
- function [] = plot_scatter_allstreams_WM(hemis)
-%this code calculates scatter plot of mean  R1 for all primary sensory ROIs
+function [] = plot_scatter_allstreams_WM(hemis)
+% This code calculates scatter plots of mean  R1 for white matter tissue for dorsal, lateral, and ventral visual processing streams, 
+% it also generates Linear mixed models per ROIs/streams, and estimates intercepts and slopes per ROI/stream.
 % hemis = 'lh' or hemis= 'rh'
-%atlas rois.
 
+%% insert your code directory here 
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
+
+%% load  data matrices 
 str(1)= load(['All_R1_ventral_WM_',hemis,'.mat']);
 str(2)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str(3)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str(4)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
-%% STEP 1: Linear Mixed Model 
+%% STEP 1: Generate Linear Mixed Model per ROI
 age = log10([str(1).age_I]);
 forgroup=[]; group=[];
  for i=1:length(str(1).FSsessions)
@@ -22,7 +25,6 @@ streamcolor{1} = [[250 81 104]/255; [249 31 61]/255; [224 6 35]/255; [174 5 28]/
 streamcolor{2} = [[105 181 99]/255; [79 156 74]/255; [62 121 57]/255; [44 86 41]/255; [26 52 25]/255] % dorsal (green) color scheme
 streamcolor{3} = [[85 161 247]/255; [36 134 244]/255; [11 108 219]/255; [8 84 170]/255; [6 60 122]/255] % lateral (blue) color scheme
 streamcolor{4} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
-
 
 streamname{1} = 'ventral'
 streamname{2} = 'dorsal'
@@ -106,7 +108,7 @@ for stream=1:3
     count=count+1;
 end
 
-%% STEP 2: %% slope 
+%% STEP 2: %% generate LMM slope 
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); 
@@ -129,7 +131,7 @@ for stream=1:3
     hold off;
 end
 
-%% STEP 3: intercept
+%% STEP 3: generate LMM intercept
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 
