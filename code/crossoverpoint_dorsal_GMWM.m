@@ -46,6 +46,7 @@ figure; set(gcf,'color','white'); hold;
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
 
+%% Early visual gray matter 
 for roi=1:length(str_GM(2).roi_list)
     VAL= FULVAL_GM(:,roi);
     
@@ -73,7 +74,7 @@ for roi=1:length(str_GM(2).roi_list)
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
     
-    %% wm
+   %% Early visual  white matter 
     VAL= FULVAL_WM(:,roi);
     
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
@@ -95,7 +96,7 @@ for roi=1:length(str_GM(2).roi_list)
    
 end
 
-%% ventral
+%% dorsal stream gray matter 
 count=3;  
 FULVAL_GM=str_GM(1).All_R1;
 FULVAL_WM=str_WM(1).All_R1;
@@ -127,7 +128,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     title([' roi: ',str_GM(1).roi_list{roi}], 'FontSize', 6,'Fontweight', 'bold', 'Color', [0 0 0]);
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
-    %% wm
+ %% dorsal stream white matter
     VAL= FULVAL_WM(:,roi);
     
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
@@ -143,13 +144,13 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
-    %% this plots the corr line
+    %% This plots the corr line
     plot((x),y,'--', 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{1}(roi,:)); 
     hold off;
   
 end
-%% to plot the age where to two lines intercept 
+%% to plot the age where the two lines intersect 
 age_range = min(age):0.01:max(age); 
 intercepts_original = []; 
 figure;
