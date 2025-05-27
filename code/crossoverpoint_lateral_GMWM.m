@@ -1,11 +1,11 @@
- function [] = plot_scatter_lateral_GMWM(hemis)
-%this code calculates scatter plot of mean  R1 for all primary sensory ROIs
+function [] = crossover_lateral_GMWM(hemis)
+% This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the 
 % hemis = 'lh' or hemis= 'rh'
 %atlas rois.
 
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
-str_GM(1)= load(['All_R1_lateral_',hemis,'.mat']);
-str_GM(2)= load(['All_R1_earlyvisual_',hemis,'.mat']);
+str_GM(1)= load(['All_R1_lateral_GM_',hemis,'.mat']);
+str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
 str_WM(1)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
