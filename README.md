@@ -6,8 +6,8 @@ Authors: Karla Perez, Ahmad Allen, Christina Tyagi, Sarah S. Tung, Bella Fascend
 This project examines the development of microstructure in gray and white matter of three visual processing streams - the dorsal, lateral, and ventral streams - during the first year of human life. 
 
 The repository is organized as follows:
-code/: Contains analysis scripts for each figure in the paper
-MATLAB scripts for all figures
+
+code/: Contains analysis scripts for each figure in the paper (MATLAB scripts for all figures)
 
 data/: Contains the necessary data files (in .mat format) to run each analysis
 
