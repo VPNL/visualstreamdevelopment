@@ -1,4 +1,4 @@
-# Visual Stream Development
+# Visual Stream Development During the First Year of Human Life
 This repository contains the code and data for the paper titled; 
 "Hierarchical microstructural tissue growth of the white and gray matter of human visual cortex during the first year of life (2025)"
 Authors: Karla Perez, Ahmad Allen, Christina Tyagi, Sarah S. Tung, Bella Fascendini, Xiaoqian Yan, Juliet Horenziak, Danya Ortiz, Hua Wu, Kalanit Grill-Spector & Vaidehi S. Natu.
