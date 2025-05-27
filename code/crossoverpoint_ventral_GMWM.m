@@ -208,7 +208,6 @@ for roi =1:length(str_GM(1).roi_list) %
     
 end
 
-%%
 %% STEP 3: plot crossover age
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
