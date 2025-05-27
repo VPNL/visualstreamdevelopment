@@ -1,15 +1,16 @@
- function [] = plot_scatter_dorsal_GMWM(hemis)
-%this code calculates scatter plot of mean  R1 for all primary sensory ROIs
+ function [] = crossoverpoint_dorsal_GMWM(hemis)
+% This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the dorsal stream.
 % hemis = 'lh' or hemis= 'rh'
-%atlas rois.
 
+%% insert your directory path 
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
-str_GM(1)= load(['All_R1_dorsal_',hemis,'.mat']);
-str_GM(2)= load(['All_R1_earlyvisual_',hemis,'.mat']);
+
+%% load matrices
+str_GM(1)= load(['All_R1_dorsal_GM',hemis,'.mat']);
+str_GM(2)= load(['All_R1_earlyvisual_GM',hemis,'.mat']);
 
 str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
-
 
 
 %% STEP 1: Linear Mixed Model for gray matter
@@ -61,11 +62,9 @@ for roi=1:length(str_GM(2).roi_list)
     
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
+   
     
-    
-    
-    
-    %% this plots the corr line
+    %% This plots the corr line
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -119,9 +118,8 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
    
-    
-    
-    %% this plots the corr line
+   
+    %% This plots the corr line
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
