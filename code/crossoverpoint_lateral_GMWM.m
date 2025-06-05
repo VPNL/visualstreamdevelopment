@@ -2,7 +2,7 @@ function [] = crossoverpoint_lateral_GMWM(hemis)
 % This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the lateral stream 
 % hemis = 'lh' or hemis= 'rh'
 
-%% insert your path name
+%% Set directory path (update this if used on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load data matrices 
@@ -11,7 +11,6 @@ str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
 str_WM(1)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
-
 
 %% STEP 1: Linear Mixed Model for gray matter
 age = log10([str_GM(1).age_I]);
@@ -117,8 +116,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
    
-    
-    
+   
     %% This plots the corr line
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
