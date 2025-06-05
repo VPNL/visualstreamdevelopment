@@ -148,7 +148,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
   
 end
 
-%% to plot the age where the two lines intersect 
+%% STEP 2: Plot the age where the two lines intersect 
 age_range = min(age):0.01:max(age); 
 intercepts_original = []; 
 figure;
