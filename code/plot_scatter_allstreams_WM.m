@@ -108,7 +108,7 @@ for stream=1:3
     count=count+1;
 end
 
-%% STEP 2: %% generate LMM slope 
+%% STEP 2: generate LMM slope 
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); 
