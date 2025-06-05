@@ -7,10 +7,10 @@ function [] = plot_scatter_allstreams_GM(hemis)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load all data matrices 
-str(1)= load(['All_R1_ventral_GM',hemis,'.mat']);
-str(2)= load(['All_R1_dorsal_GM',hemis,'.mat']);
-str(3)= load(['All_R1_lateral_GM',hemis,'.mat']);
-str(4)= load(['All_R1_earlyvisual_GM',hemis,'.mat']);
+str(1)= load(['All_R1_ventral_GM_',hemis,'.mat']);
+str(2)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
+str(3)= load(['All_R1_lateral_GM_',hemis,'.mat']);
+str(4)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
 %% STEP 1: Linear Mixed Model 
 age = log10([str(1).age_I]);
