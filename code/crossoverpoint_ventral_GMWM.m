@@ -6,8 +6,8 @@ function [] = crossoverpoint_ventral_GMWM(hemis)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load data matrices
-str_GM(1)= load(['All_R1_ventral_',hemis,'.mat']);
-str_GM(2)= load(['All_R1_earlyvisual_',hemis,'.mat']);
+str_GM(1)= load(['All_R1_ventral_GM_',hemis,'.mat']);
+str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
 str_WM(1)= load(['All_R1_ventral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
@@ -148,7 +148,8 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     hold off;
   
 end
-%% to plot the age where the two lines intersect 
+
+%% STEP 2: to plot the age where the two lines intersect 
 age_range = min(age):0.01:max(age); 
 intercepts_original = []; 
 figure;
