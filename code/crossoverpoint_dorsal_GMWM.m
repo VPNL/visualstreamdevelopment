@@ -2,26 +2,27 @@
 % This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the dorsal stream.
 % hemis = 'lh' or hemis= 'rh'
 
-%% insert your directory path 
+%% Set directory path (update this if used on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% load matrices
-str_GM(1)= load(['All_R1_dorsal_GM',hemis,'.mat']);
-str_GM(2)= load(['All_R1_earlyvisual_GM',hemis,'.mat']);
+%% Load R1 data for gray matter (GM) and white matter (WM)
+str_GM(1)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
+str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
 str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
 
 %% STEP 1: Linear Mixed Model for gray matter
-age = log10([str_GM(1).age_I]);
+age = log10([str_GM(1).age_I]); % log10-transformed age in days
 forgroup=[]; group=[];
  for i=1:length(str_GM(1).FSsessions)
    a= extractBetween(str_GM(1).FSsessions{i},'bb','_mri');
    forgroup=[forgroup str2num(a{1})];  
  end
-[c1 c2 group] =unique(forgroup);
+[c1 c2 group] =unique(forgroup); % Assign unique group ID per baby
 
+%% Define colors and stream names
 streamcolor{1} = [[105 181 99]/255; [79 156 74]/255; [62 121 57]/255; [44 86 41]/255; [26 52 25]/255] % dorsal (green) color scheme
 streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
 
@@ -42,6 +43,7 @@ streamname{2} = 'earlyvisual'
    x=[];
    y=[];
 figure; set(gcf,'color','white'); hold;
+
 %% build a table/model per roi per stream
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
@@ -56,8 +58,8 @@ for roi=1:length(str_GM(2).roi_list)
     subplot(1,8,roi); hold;
     x1 = 9:1:420;
     y1 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x1)));
-    
-    
+
+   
     inC2_gray(roi) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi) = lme1.Coefficients.Estimate(2);
     
@@ -150,7 +152,8 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     hold off;
   
 end
-%% to plot the age where the two lines intersect 
+
+%% STEP 2: Plot the age where the two lines intersect 
 age_range = min(age):0.01:max(age); 
 intercepts_original = []; 
 figure;
@@ -211,7 +214,7 @@ for roi =1:length(str_GM(1).roi_list) %
 end
 
 %%
-%% STEP 3: plot crossover age
+%% STEP 3: Plot Crossover Ages
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
@@ -227,7 +230,4 @@ end
 
 mean(intercepts_original)
 std(intercepts_original)
-
-
-
 
