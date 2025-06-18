@@ -1,17 +1,15 @@
  function [] = crossoverpoint_dorsal_GMWM(hemis)
-% This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the dorsal stream.
+% This code computes cross-over ages where white matter R1 values exceed gray matter R1 values in the dorsal stream 
 % hemis = 'lh' or hemis= 'rh'
 
 %% Set the working directory (modify this path if running on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% Load R1 data for gray matter (GM) and white matter (WM)
+%% Load gray (GM) and white matter (WM) R1 data for dorsal and early visual regions
 str_GM(1)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
 str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
-
 str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
-
 
 %% STEP 1: Fit Linear Mixed Models (LMM) for gray and white matter data
 age = log10([str_GM(1).age_I]); % log10-transformed age in days
@@ -39,10 +37,9 @@ streamname{2} = 'earlyvisual'
  slP2_white=[];
  inCSE2_white=[];
  slPSE2_white=[];
-    
-    
-   x=[];
-   y=[];
+
+
+x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
 
 %% Extract R1 values from early visual areas to build tables and fit models for each ROI
@@ -77,7 +74,7 @@ for roi=1:length(str_GM(2).roi_list)
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
 
     
-   %% Early visual white matter 
+    %% Early visual white matter 
     VAL= FULVAL_WM(:,roi);
     
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
@@ -88,7 +85,6 @@ for roi=1:length(str_GM(2).roi_list)
     
     inC2_white(roi) = lme1.Coefficients.Estimate(1);
     slP2_white(roi) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
@@ -206,13 +202,14 @@ for roi =1:length(str_GM(1).roi_list) %
     
 end
 
-%%
+
 %% STEP 3: Plot Crossover Ages
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
 axis([0 9 40 110]);
 title('Intercept');
+
 for roi=1:length(str_GM(2).roi_list)
     bar([roi],[intercepts_original(roi)],'Facecolor', streamcolor{2}(roi,:),'Edgecolor', streamcolor{2}(roi,:));
 end
