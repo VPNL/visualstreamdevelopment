@@ -13,7 +13,7 @@ str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
 
-%% STEP 1: Fit Linear Mixed Models (LMM) for gray matter 
+%% STEP 1: Fit Linear Mixed Models (LMM) for gray and white matter data
 age = log10([str_GM(1).age_I]); % log10-transformed age in days
 forgroup=[]; group=[];
  for i=1:length(str_GM(1).FSsessions)
@@ -22,13 +22,14 @@ forgroup=[]; group=[];
  end
 [c1 c2 group] =unique(forgroup); % Assign unique group ID per baby
 
-%% Define colors and stream names
-streamcolor{1} = [[105 181 99]/255; [79 156 74]/255; [62 121 57]/255; [44 86 41]/255; [26 52 25]/255] % dorsal (green) color scheme
-streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
+%% Define colors schemes and stream names
+streamcolor{1} = [[105 181 99]/255; [79 156 74]/255; [62 121 57]/255; [44 86 41]/255; [26 52 25]/255] % color scheme for dorsal stream (green tones)
+streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % color scheme for early visual areas (gray tones)
 
 streamname{1} = 'dorsal'
 streamname{2} = 'earlyvisual'
 
+%% Initialize arrays to store LMM results
  inC2_gray=[];
  slP2_gray=[];
  inCSE2_gray=[];
@@ -44,7 +45,7 @@ streamname{2} = 'earlyvisual'
    y=[];
 figure; set(gcf,'color','white'); hold;
 
-%% build a table/model per roi per stream
+%% Extract R1 values from early visual areas to build tables and fit models for each ROI
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
 
@@ -67,16 +68,16 @@ for roi=1:length(str_GM(2).roi_list)
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
    
     
-    %% This plots the corr line
+    %% Plot the correlation line of early visual gray matter
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
     h1=scatter([(10.^age)],[VAL], 40, 'o', 'MarkerEdgecolor', streamcolor{2}(roi,:)); %colormap([streamcolor{stream}(roi,:); streamcolor{stream}(roi,:)]); % colorbar('eastoutside');
     title([' roi: ',str_GM(2).roi_list{roi}], 'FontSize', 6,'Fontweight', 'bold', 'Color', [0 0 0]);
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
+
     
-    
-   %% Early visual  white matter 
+   %% Early visual white matter 
     VAL= FULVAL_WM(:,roi);
     
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
@@ -91,38 +92,34 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
-    %% this plots the corr line
+    %% Plot the correlation line of early visual white matter
     plot((x2),y2,'--', 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{2}(roi,:)); 
     hold off;
    
 end
 
-%% dorsal stream gray matter 
+%% Repeat the same for dorsal stream regions
 count=3;  
 FULVAL_GM=str_GM(1).All_R1;
 FULVAL_WM=str_WM(1).All_R1;
 
 for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
-   
+%% Dorsal stream gray matter 
     VAL= FULVAL_GM(:,roi);
-    
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
  
     subplot(1,8,count+roi); hold;
     x1 = 9:1:420;
     y1 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x1)));
-    
-       
+
     inC2_gray(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi+count) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
-   
-   
-    %% This plots the corr line
+  
+    %% Plot the correlation line for dorsal stream gray matter
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -130,27 +127,23 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     title([' roi: ',str_GM(1).roi_list{roi}], 'FontSize', 6,'Fontweight', 'bold', 'Color', [0 0 0]);
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
- %% dorsal stream white matter
+ %% Dorsal stream white matter
     VAL= FULVAL_WM(:,roi);
-    
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
  
     x2 = 9:1:420;
     y2 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x2)));
-     
-    
+
     inC2_white(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_white(roi+count) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
-    %% This plots the corr line
+    %% Plot the correlation line for dorsal stream white matter
     plot((x),y,'--', 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{1}(roi,:)); 
     hold off;
-  
 end
 
 %% STEP 2: Plot the age where the two lines intersect 
