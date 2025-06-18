@@ -13,7 +13,7 @@ str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
 
-%% STEP 1: Linear Mixed Model for gray matter
+%% STEP 1: Fit Linear Mixed Models (LMM) for gray matter 
 age = log10([str_GM(1).age_I]); % log10-transformed age in days
 forgroup=[]; group=[];
  for i=1:length(str_GM(1).FSsessions)
