@@ -1,5 +1,5 @@
  function [] = crossoverpoint_dorsal_GMWM(hemis)
-% This code computes cross-over ages where white matter R1 values exceed gray matter R1 values in the dorsal stream 
+% This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the dorsal stream 
 % hemis = 'lh' or hemis= 'rh'
 
 %% Set the working directory (modify this path if running on a different system)
