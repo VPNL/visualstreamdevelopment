@@ -29,6 +29,7 @@ streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % color 
 streamname{1} = 'lateral'
 streamname{2} = 'earlyvisual'
 
+%% Initialize coefficent arrays
  inC2_gray=[];
  slP2_gray=[];
  inCSE2_gray=[];
@@ -38,10 +39,10 @@ streamname{2} = 'earlyvisual'
  slP2_white=[];
  inCSE2_white=[];
  slPSE2_white=[];
-       
 
 x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
+
 %% build a table/model per roi per stream
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
