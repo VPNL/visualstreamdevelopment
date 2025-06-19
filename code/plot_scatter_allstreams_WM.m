@@ -37,7 +37,8 @@ streamname{4} = 'earlyvisual'
 %streamcolor{4} = [[52 58 64]/255; [73 80 87]/255; [108 108 108]/255]; % eva color scheme
 
 inC1=[]; slP1=[];  inCSE1=[]; slPSE1=[];
-   
+
+%% Generating linear mixed model (LMM) per ROI
 for stream=1:3
     figure; set(gcf,'color','white'); hold;
     %% build a table/model per roi per stream 
