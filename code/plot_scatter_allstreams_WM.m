@@ -93,7 +93,7 @@ for stream=1:3
         inCSE1{stream}(roi) = lme1.Coefficients.SE(1);
         slPSE1{stream}(roi) = lme1.Coefficients.SE(2);
         
-        %% this plots the corr line
+        %% this plots the line fit
         plot((x),y, 'color', streamcolor{stream}(roi,:), 'linewidth', 2);
         axis([0 500 .3 .8]);
         xticks([0 200 400]);
