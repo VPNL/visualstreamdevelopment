@@ -43,7 +43,7 @@ streamname{2} = 'earlyvisual'
 x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
 
-%% build a table/model per roi per stream
+%% Extract R1 values from early visual areas to build tables and fit models for each ROI
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
 
