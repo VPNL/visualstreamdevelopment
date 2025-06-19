@@ -87,7 +87,7 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
-    %% This plots the corr line
+    %% Plot the correlation line of early visual white matter
     plot((x2),y2,'--', 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{2}(roi,:)); 
     hold off;
