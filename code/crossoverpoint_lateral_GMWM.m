@@ -73,7 +73,7 @@ for roi=1:length(str_GM(2).roi_list)
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
     
-    %% Early visual white matter 
+    %% Early visual areas white matter 
     VAL= FULVAL_WM(:,roi);
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
