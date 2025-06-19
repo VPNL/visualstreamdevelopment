@@ -5,7 +5,7 @@ function [] = crossoverpoint_lateral_GMWM(hemis)
 %% Set the working directory (modify this path if running on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% load data matrices 
+%% Load gray (GM) and white matter (WM) R1 data for lateral stream and early visual regions
 str_GM(1)= load(['All_R1_lateral_GM_',hemis,'.mat']);
 str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 
