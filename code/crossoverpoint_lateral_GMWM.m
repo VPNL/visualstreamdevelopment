@@ -8,7 +8,6 @@ cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/res
 %% Load gray (GM) and white matter (WM) R1 data for lateral stream and early visual regions
 str_GM(1)= load(['All_R1_lateral_GM_',hemis,'.mat']);
 str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
-
 str_WM(1)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
