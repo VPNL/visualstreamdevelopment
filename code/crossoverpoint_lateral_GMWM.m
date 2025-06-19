@@ -208,17 +208,20 @@ for roi =1:length(str_GM(1).roi_list) %
     
 end
 
-%% STEP 3: plot crossover age
+%% STEP 3: Plot summary of crossover ages 
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
 axis([0 9 40 110]);
 title('Intercept');
+
+%% Plot early visual ROIs
 for roi=1:length(str_GM(2).roi_list)
     bar([roi],[intercepts_original(roi)],'Facecolor', streamcolor{2}(roi,:),'Edgecolor', streamcolor{2}(roi,:));
     
 end
 
+%% Plot lateral stream ROIs
 for roi=1:length(str_GM(1).roi_list)
     bar([3+roi],[intercepts_original(3+roi)],'facecolor', streamcolor{1}(roi,:),'Edgecolor', streamcolor{1}(roi,:));
     
