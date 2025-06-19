@@ -44,7 +44,7 @@ streamname{2} = 'earlyvisual'
 x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
 
-%% build a table/model per roi per stream
+%% Extract R1 values from early visual areas to build tables and fit models for each ROI
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
 
@@ -59,7 +59,7 @@ for roi=1:length(str_GM(2).roi_list)
     x1 = 9:1:420;
     y1 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x1)));
     
-    
+    %% Save coefficients
     inC2_gray(roi) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi) = lme1.Coefficients.Estimate(2);
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
