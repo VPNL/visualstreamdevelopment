@@ -38,8 +38,7 @@ streamname{2} = 'earlyvisual'
  slPSE2_white=[];
     
     
-   x=[];
-   y=[];
+x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
 %% build a table/model per roi per stream
 FULVAL_GM=str_GM(2).All_R1;
