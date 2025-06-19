@@ -5,7 +5,7 @@
 %% Set the working directory (modify this path if running on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% Load gray (GM) and white matter (WM) R1 data for dorsal and early visual regions
+%% Load gray (GM) and white matter (WM) R1 data for dorsal stream and early visual regions
 str_GM(1)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
 str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
