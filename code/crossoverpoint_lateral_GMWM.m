@@ -227,6 +227,7 @@ for roi=1:length(str_GM(1).roi_list)
     
 end
 
+%% Display group statistics
 mean(intercepts_original)
 std(intercepts_original)
 
