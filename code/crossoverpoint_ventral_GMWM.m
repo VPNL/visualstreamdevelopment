@@ -177,7 +177,7 @@ for roi=1:length(str_GM(2).roi_list)
     end
 end 
 
-%% For lateral stream ROIs
+%% For ventral stream ROIs
 count=3;  
 for roi =1:length(str_GM(1).roi_list) %
     subplot(1,8, roi+count);
