@@ -3,7 +3,7 @@ function [] = plot_scatter_allstreams_WM(hemis)
 % it also generates Linear mixed models per ROIs/streams, and estimates intercepts and slopes per ROI/stream.
 % hemis = 'lh' or hemis= 'rh'
 
-%% insert your code directory here 
+%% Set working directory to where all R1 data is stored (update this path)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load  data matrices 
