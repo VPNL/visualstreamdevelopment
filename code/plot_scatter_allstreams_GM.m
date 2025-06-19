@@ -26,19 +26,14 @@ streamcolor{2} = [[105 181 99]/255; [79 156 74]/255; [62 121 57]/255; [44 86 41]
 streamcolor{3} = [[85 161 247]/255; [36 134 244]/255; [11 108 219]/255; [8 84 170]/255; [6 60 122]/255] % lateral (blue) color scheme
 streamcolor{4} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
 
-
 streamname{1} = 'ventral'
 streamname{2} = 'dorsal'
 streamname{3} = 'lateral'
 streamname{4} = 'earlyvisual'
 
-%treamcolor{1} = [[136 8 8] /255; [136 8 8] /255; [136 8 8] /255;[136 8 8] /255; [136 8 8] /255 ] % ventral color scheme
-%streamcolor{2} = [[79 121 66] /255; [79 121 66] /255; [79 121 66] /255;[79 121 66] /255;[79 121 66] /255;] % lateral color scheme
-%streamcolor{3} = [[0 0 255]/255; [0 0 255]/255;[0 0 255]/255;[0 0 255]/255;[0 0 255]/255;] % dorsal color scheme
-%streamcolor{4} = [[52 58 64]/255; [73 80 87]/255; [108 108 108]/255]; % eva color scheme
-
 inC1=[]; slP1=[];  inCSE1=[]; slPSE1=[];
-   
+
+%% Generating linear mixed model (LMM) per ROI
 for stream=1:3
     figure; set(gcf,'color','white'); hold;
     %% build a table/model per roi per stream 
@@ -61,7 +56,7 @@ for stream=1:3
         inCSE1{4}(roi) = lme1.Coefficients.SE(1);
         slPSE1{4}(roi) = lme1.Coefficients.SE(2);
         
-        %% this plots the corr line
+        %% this plots the line fit
         plot((x),y, 'color', streamcolor{4}(roi,:), 'linewidth', 2);
         axis([0 500 .3 .8]);
         
@@ -93,7 +88,7 @@ for stream=1:3
         inCSE1{stream}(roi) = lme1.Coefficients.SE(1);
         slPSE1{stream}(roi) = lme1.Coefficients.SE(2);
         
-        %% this plots the corr line
+        %% this plots the line fit
         plot((x),y, 'color', streamcolor{stream}(roi,:), 'linewidth', 2);
         axis([0 500 .3 .8]);
         xticks([0 200 400]);
@@ -109,7 +104,7 @@ for stream=1:3
     count=count+1;
 end
 
-%% STEP 2: generate LMM slope 
+%% STEP 2: Plot LMM slope
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); 
@@ -132,7 +127,7 @@ for stream=1:3
     hold off;
 end
 
-%% STEP 3: generate LMM intercept
+%% STEP 3: Plot LMM intercept
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
