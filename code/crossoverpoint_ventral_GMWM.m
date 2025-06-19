@@ -145,10 +145,12 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
   
 end
 
-%% STEP 2: to plot the age where the two lines intersect 
+%% STEP 2: Calculate crossover ages where WM R1 surpasses GM R1 (intersection point)
 age_range = min(age):0.01:max(age); 
 intercepts_original = []; 
 figure;
+
+
 for roi=1:length(str_GM(2).roi_list)
     subplot(1,8,roi); hold on;
     box off
@@ -174,10 +176,10 @@ for roi=1:length(str_GM(2).roi_list)
         fprintf('For %s, the lines are parallel and do not intersect within the range.\n', roi_list{i});
     end
 end 
-    
+
+
 count=3;  
 for roi =1:length(str_GM(1).roi_list) %
-    
     subplot(1,8, roi+count);
     hold on;
     box off
