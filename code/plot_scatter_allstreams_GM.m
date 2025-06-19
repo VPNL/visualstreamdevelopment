@@ -6,7 +6,7 @@ function [] = plot_scatter_allstreams_GM(hemis)
 %% Set working directory to where all R1 data is stored (update this path)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% load all data matrices 
+%% Load R1 data matricies for gray matter (GM) and white matter (WM)
 str(1)= load(['All_R1_ventral_GM_',hemis,'.mat']);
 str(2)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
 str(3)= load(['All_R1_lateral_GM_',hemis,'.mat']);
