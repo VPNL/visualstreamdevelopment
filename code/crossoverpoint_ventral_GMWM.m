@@ -5,7 +5,7 @@ function [] = crossoverpoint_ventral_GMWM(hemis)
 %% Set working directory to where all R1 data is stored (update this path)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% STEP 1: Load data and fit linear mixed models (LMMs) for gray matter (GM) and white matter (WM) in early visual and dorsal streams
+%% STEP 1: Load data and fit linear mixed models (LMMs) for gray matter (GM) and white matter (WM) in early visual and ventral streams
 
 %% Load R1 data matricies for gray matter (GM) and white matter (WM)
 str_GM(1)= load(['All_R1_ventral_GM_',hemis,'.mat']);
@@ -13,7 +13,7 @@ str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 str_WM(1)= load(['All_R1_ventral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
-%% STEP 1: Linear Mixed Model for gray matter
+%% Convert age to log scale and assign group ID per baby for LMMs
 age = log10([str_GM(1).age_I]);
 forgroup=[]; group=[];
  for i=1:length(str_GM(1).FSsessions)
