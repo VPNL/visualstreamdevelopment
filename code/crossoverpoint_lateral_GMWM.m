@@ -2,7 +2,7 @@ function [] = crossoverpoint_lateral_GMWM(hemis)
 % This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the lateral stream 
 % hemis = 'lh' or hemis= 'rh'
 
-%% Set directory path (update this if used on a different system)
+%% Set the working directory (modify this path if running on a different system)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load data matrices 
