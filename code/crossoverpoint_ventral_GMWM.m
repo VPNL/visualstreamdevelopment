@@ -138,7 +138,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line for ventral stream white matter
+    %% Plot the white matter R1 vs age for ventral stream
     plot((x),y,'--', 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{1}(roi,:)); 
     hold off;
@@ -207,7 +207,7 @@ for roi =1:length(str_GM(1).roi_list) %
     
 end
 
-%% STEP 3: Plot summary of crossover ages 
+%% STEP 3: Plot statistical summary of crossover ages
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
@@ -216,14 +216,12 @@ title('Intercept');
 
 %% Plot early visual ROIs
 for roi=1:length(str_GM(2).roi_list)
-    bar([roi],[intercepts_original(roi)],'Facecolor', streamcolor{2}(roi,:),'Edgecolor', streamcolor{2}(roi,:));
-    
+    bar([roi],[intercepts_original(roi)],'Facecolor', streamcolor{2}(roi,:),'Edgecolor', streamcolor{2}(roi,:));  
 end
 
 %% Plot ventral stream ROIs
 for roi=1:length(str_GM(1).roi_list)
     bar([3+roi],[intercepts_original(3+roi)],'facecolor', streamcolor{1}(roi,:),'Edgecolor', streamcolor{1}(roi,:));
-    
 end
 
 %% Display group statistics
