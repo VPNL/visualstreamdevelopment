@@ -107,6 +107,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     x1 = 9:1:420;
     y1 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x1)));
 
+    %% Save coefficients  
     inC2_gray(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi+count) = lme1.Coefficients.Estimate(2);
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
@@ -120,7 +121,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     title([' roi: ',str_GM(1).roi_list{roi}], 'FontSize', 6,'Fontweight', 'bold', 'Color', [0 0 0]);
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
- %% Dorsal stream white matter
+    %% Dorsal stream white matter
     VAL= FULVAL_WM(:,roi);
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
