@@ -132,7 +132,7 @@ for stream=1:3
     hold off;
 end
 
-%% STEP 3: generate LMM intercept
+%% STEP 3: Plot LMM intercept
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 
