@@ -51,7 +51,7 @@ FULVAL_WM=str_WM(2).All_R1;
 for roi=1:length(str_GM(2).roi_list)
     VAL= FULVAL_GM(:,roi);
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
-    lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
+    lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run linear mixed model (LMM)
  
     subplot(1,8,roi); hold;
     x1 = 9:1:420;
@@ -64,7 +64,7 @@ for roi=1:length(str_GM(2).roi_list)
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
    
     
-    %% Plot the correlation line of early visual gray matter
+    %% Plot gray matter R1 vs age of early visual areas
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -86,7 +86,7 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line of early visual white matter
+    %% Plot white matter R1 vs age of early visual areas
     plot((x2),y2,'--', 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{2}(roi,:)); 
     hold off;
@@ -113,7 +113,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
   
-    %% Plot the correlation line for dorsal stream gray matter
+    %% Plot the gray matter R1 vs age for dorsal stream 
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -134,7 +134,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line for dorsal stream white matter
+    %% Plot the white matter R1 vs age for dorsal stream
     plot((x),y,'--', 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{1}(roi,:)); 
     hold off;
@@ -203,7 +203,7 @@ for roi =1:length(str_GM(1).roi_list) %
 end
 
 
-%% STEP 3: Plot summary of crossover ages 
+%% STEP 3: Plot statistical summary of crossover ages 
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
