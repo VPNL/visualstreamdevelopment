@@ -65,7 +65,7 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
 
-    %% Plot the correlation line of early visual gray matter
+    %% Plot gray matter R1 vs age of early visual areas
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -81,14 +81,14 @@ for roi=1:length(str_GM(2).roi_list)
  
     x2 = 9:1:420;
     y2 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x2)));
-    
+
+    %% Save coefficients
     inC2_white(roi) = lme1.Coefficients.Estimate(1);
     slP2_white(roi) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line of early visual white matter
+    %% Plot white matter R1 vs age of early visual areas
     plot((x2),y2,'--', 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{2}(roi,:)); 
     hold off;
@@ -116,7 +116,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
   
-    %% Plot the correlation line for ventral stream gray matter
+    %% Plot the gray matter R1 vs age for ventral stream 
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
