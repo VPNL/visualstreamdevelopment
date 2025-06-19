@@ -7,7 +7,7 @@ cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/res
 
 %% STEP 1: Load data and fit linear mixed models (LMMs) for gray matter (GM) and white matter (WM) in early visual and dorsal streams
 
-%% Load R1 data for gray matter (GM) and white matter (WM)
+%% Load R1 data matricies for gray matter (GM) and white matter (WM)
 str_GM(1)= load(['All_R1_dorsal_GM_',hemis,'.mat']);
 str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 str_WM(1)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
