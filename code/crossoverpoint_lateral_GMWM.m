@@ -5,7 +5,7 @@ function [] = crossoverpoint_lateral_GMWM(hemis)
 %% Set working directory to where all R1 data is stored (update this path)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
-%% STEP 1: Load data and fit linear mixed models (LMMs) for gray matter (GM) and white matter (WM) in early visual and dorsal streams
+%% STEP 1: Load data and fit linear mixed models (LMMs) for gray matter (GM) and white matter (WM) in early visual and lateral streams
 
 %% Load R1 data matricies for gray matter (GM) and white matter (WM)
 str_GM(1)= load(['All_R1_lateral_GM_',hemis,'.mat']);
