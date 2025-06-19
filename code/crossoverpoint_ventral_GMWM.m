@@ -2,7 +2,7 @@ function [] = crossoverpoint_ventral_GMWM(hemis)
 % This code generates the cross-over ages when the white matter R1 values become larger than the gray matter values for the ventral stream.
 % hemis = 'lh' or hemis= 'rh'
 
-%% insert your directory path 
+%% Set working directory to where all R1 data is stored (update this path)
 cd('/oak/stanford/groups/kalanit/biac2/kgs/projects/VisualStreamsDevelopment/results');
 
 %% load data matrices
