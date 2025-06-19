@@ -64,7 +64,7 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
     
-   %% This plots the corr line
+    %% Plot the correlation line of early visual gray matter
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -73,9 +73,8 @@ for roi=1:length(str_GM(2).roi_list)
     ylabel({'R1 [1/s]'});  xlabel({'Age in days'});
     
     
-    %% %% early visual white matter 
+    %% Early visual white matter 
     VAL= FULVAL_WM(:,roi);
-    
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
  
