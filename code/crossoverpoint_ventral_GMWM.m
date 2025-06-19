@@ -29,6 +29,7 @@ streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % color 
 streamname{1} = 'ventral'
 streamname{2} = 'earlyvisual'
 
+%% Initialize coefficent arrays
  inC2_gray=[];
  slP2_gray=[];
  inCSE2_gray=[];
