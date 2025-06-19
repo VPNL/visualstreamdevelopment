@@ -150,7 +150,7 @@ age_range = min(age):0.01:max(age);
 intercepts_original = []; 
 figure;
 
-
+%% For early visual ROIs
 for roi=1:length(str_GM(2).roi_list)
     subplot(1,8,roi); hold on;
     box off
@@ -177,7 +177,7 @@ for roi=1:length(str_GM(2).roi_list)
     end
 end 
 
-
+%% For lateral stream ROIs
 count=3;  
 for roi =1:length(str_GM(1).roi_list) %
     subplot(1,8, roi+count);
