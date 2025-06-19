@@ -40,9 +40,11 @@ streamname{2} = 'earlyvisual'
     
 x=[]; y=[];
 figure; set(gcf,'color','white'); hold;
+
 %% build a table/model per roi per stream
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
+
 %% Early visual gray matter 
 for roi=1:length(str_GM(2).roi_list)
     VAL= FULVAL_GM(:,roi);
@@ -57,7 +59,6 @@ for roi=1:length(str_GM(2).roi_list)
     
     inC2_gray(roi) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
 
@@ -72,7 +73,6 @@ for roi=1:length(str_GM(2).roi_list)
     
     %% Early visual white matter 
     VAL= FULVAL_WM(:,roi);
-    
     tbl= table(age', double(VAL), group,'VariableNames',{'Age','meanR1','Baby'});
     lme1= fitlme(tbl,'meanR1 ~ Age + (1|Baby)'); %% fitlme :  this is a matlab function to run LMM
  
@@ -111,11 +111,9 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
        
     inC2_gray(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi+count) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
-   
-    
+  
     
     %% This plots the corr line
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
@@ -137,7 +135,6 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     
     inC2_white(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_white(roi+count) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
