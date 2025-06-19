@@ -12,7 +12,7 @@ str(2)= load(['All_R1_dorsal_WM_',hemis,'.mat']);
 str(3)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str(4)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
-%% STEP 1: Generate Linear Mixed Model per ROI
+%% STEP 1: Linear Mixed Model 
 age = log10([str(1).age_I]);
 forgroup=[]; group=[];
  for i=1:length(str(1).FSsessions)
