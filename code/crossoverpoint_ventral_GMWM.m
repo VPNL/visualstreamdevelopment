@@ -23,7 +23,7 @@ forgroup=[]; group=[];
 [c1 c2 group] =unique(forgroup);
 
 %% Define colors schemes and stream names
-streamcolor{1} = [[250 81 104]/255; [249 31 61]/255; [224 6 35]/255; [174 5 28]/255; [124 3 20]/255] % ventral {red} color scheme
+streamcolor{1} = [[250 81 104]/255; [249 31 61]/255; [224 6 35]/255; [174 5 28]/255; [124 3 20]/255] % color scheme for ventral stream (red tones)
 streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
 
 streamname{1} = 'ventral'
