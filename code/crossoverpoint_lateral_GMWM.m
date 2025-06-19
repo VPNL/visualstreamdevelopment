@@ -64,7 +64,7 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line of early visual gray matter
+    %% Plot gray matter R1 vs age of early visual areas
     plot((x1),y1, 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -87,11 +87,10 @@ for roi=1:length(str_GM(2).roi_list)
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
     slPSE2_white(roi) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line of early visual white matter
+    %% Plot white matter R1 vs age of early visual areas
     plot((x2),y2,'--', 'color', streamcolor{2}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{2}(roi,:)); 
     hold off;
-   
 end
 
 %% Repeat the same model fitting and plotting for lateral stream ROIs
@@ -115,8 +114,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_gray(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi+count) = lme1.Coefficients.SE(2);
    
-   
-    %% Plot the correlation line for lateral stream gray matter
+    %% Plot the gray matter R1 vs age for lateral stream 
     plot((x),y, 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     axis([0 500 .3 .8]);
     set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'white' 'white'}); grid on;
@@ -138,7 +136,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
     slPSE2_white(roi+count) = lme1.Coefficients.SE(2);
     
-    %% Plot the correlation line for dorsal stream white matter
+    %% Plot the white matter R1 vs age for lateral stream
     plot((x),y,'--', 'color', streamcolor{1}(roi,:), 'linewidth', 2);
     h1=scatter([(10.^age)],[VAL], 40, '^', 'MarkerEdgecolor', streamcolor{1}(roi,:)); 
     hold off;
@@ -208,7 +206,7 @@ for roi =1:length(str_GM(1).roi_list) %
     
 end
 
-%% STEP 3: Plot summary of crossover ages 
+%% STEP 3: Plot statistical summary of crossover ages
 figure;
 set(gcf, {'DefaultAxesXColor','DefaultAxesYColor'}, {'k' 'k'});
 set(gcf,'color','white'); hold;
@@ -218,20 +216,15 @@ title('Intercept');
 %% Plot early visual ROIs
 for roi=1:length(str_GM(2).roi_list)
     bar([roi],[intercepts_original(roi)],'Facecolor', streamcolor{2}(roi,:),'Edgecolor', streamcolor{2}(roi,:));
-    
 end
 
 %% Plot lateral stream ROIs
 for roi=1:length(str_GM(1).roi_list)
     bar([3+roi],[intercepts_original(3+roi)],'facecolor', streamcolor{1}(roi,:),'Edgecolor', streamcolor{1}(roi,:));
-    
 end
 
 %% Display group statistics
 mean(intercepts_original)
 std(intercepts_original)
-
-
-
 
 
