@@ -80,7 +80,8 @@ for roi=1:length(str_GM(2).roi_list)
  
     x2 = 9:1:420;
     y2 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x2)));
-    
+
+    %% Save coefficients
     inC2_white(roi) = lme1.Coefficients.Estimate(1);
     slP2_white(roi) = lme1.Coefficients.Estimate(2);
     inCSE2_white(roi) = lme1.Coefficients.SE(1);
@@ -129,6 +130,7 @@ for roi =1:length(str_GM(1).roi_list) %% running a linear mixed model per roi
     x2 = 9:1:420;
     y2 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x2)));
 
+    %% Save coefficients
     inC2_white(roi+count) = lme1.Coefficients.Estimate(1);
     slP2_white(roi+count) = lme1.Coefficients.Estimate(2);
     inCSE2_white(roi+count) = lme1.Coefficients.SE(1);
