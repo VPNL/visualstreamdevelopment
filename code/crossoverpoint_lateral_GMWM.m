@@ -47,7 +47,7 @@ figure; set(gcf,'color','white'); hold;
 FULVAL_GM=str_GM(2).All_R1;
 FULVAL_WM=str_WM(2).All_R1;
 
-%% early visual gray matter 
+%% Early visual areas gray matter 
 for roi=1:length(str_GM(2).roi_list)
     VAL= FULVAL_GM(:,roi);
     
@@ -58,10 +58,9 @@ for roi=1:length(str_GM(2).roi_list)
     x1 = 9:1:420;
     y1 = lme1.Coefficients.Estimate(1) + (lme1.Coefficients.Estimate(2))*((log10(x1)));
     
-    
+    %% Save coefficients
     inC2_gray(roi) = lme1.Coefficients.Estimate(1);
     slP2_gray(roi) = lme1.Coefficients.Estimate(2);
-    
     inCSE2_gray(roi) = lme1.Coefficients.SE(1);
     slPSE2_gray(roi) = lme1.Coefficients.SE(2);
     
