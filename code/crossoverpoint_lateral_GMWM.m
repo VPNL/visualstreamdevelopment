@@ -13,7 +13,7 @@ str_GM(2)= load(['All_R1_earlyvisual_GM_',hemis,'.mat']);
 str_WM(1)= load(['All_R1_lateral_WM_',hemis,'.mat']);
 str_WM(2)= load(['All_R1_earlyvisual_WM_',hemis,'.mat']);
 
-%% STEP 1: Linear Mixed Model for gray matter
+%% Convert age to log scale and assign group ID per baby for LMMs
 age = log10([str_GM(1).age_I]);
 forgroup=[]; group=[];
  for i=1:length(str_GM(1).FSsessions)
