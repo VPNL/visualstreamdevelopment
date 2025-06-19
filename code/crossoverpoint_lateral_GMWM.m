@@ -24,7 +24,7 @@ forgroup=[]; group=[];
 
 %% Define colors schemes and stream names
 streamcolor{1} = [[85 161 247]/255; [36 134 244]/255; [11 108 219]/255; [8 84 170]/255; [6 60 122]/255] % color scheme for lateral stream (blue tones)
-streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % eva color scheme
+streamcolor{2} = [[80 80 80]/255;[120 120 120]/255; [160 160 160]/255]; % color scheme for early visual areas (gray tones)
 
 streamname{1} = 'lateral'
 streamname{2} = 'earlyvisual'
