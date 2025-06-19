@@ -94,7 +94,7 @@ for roi=1:length(str_GM(2).roi_list)
    
 end
 
-%% lateral stream gray matter 
+%% Repeat the same model fitting and plotting for lateral stream ROIs
 count=3;  
 FULVAL_GM=str_GM(1).All_R1;
 FULVAL_WM=str_WM(1).All_R1;
